@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FoodDeliveryTestApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
+        <item name="colorOnPrimaryContainer">@color/color_on_primary</item>
+
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_on_surface</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.FoodDeliveryTestApp" parent="Base.Theme.FoodDeliveryTestApp" />
+</resources>

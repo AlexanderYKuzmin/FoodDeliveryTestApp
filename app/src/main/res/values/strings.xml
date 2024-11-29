@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">FoodDeliveryTestApp</string>
+
+    <string name="title">Доставка</string>
+
+    <string name="default_city">Ижевск</string>
+
+    <string name="alert_dialog_permission_title">Требуется разрешение для геолокации</string>
+    <string name="alert_dialog_permission_message">Начиная с Андроид версии 6, система запрашивает разрешения для приложений</string>
+    <string name="failed_get_location">Не удалось получить данные геолокации</string>
+    <string name="location_is_not_available">Данные геолокации недоступны</string>
+
+    <string name="failed_internet_connection">Проверьте интернет соединение</string>
+    <string name="restricted_internet_connection">Доступ в сеть ограничен</string>
+
+    //titles
+    <string name="title_payment">Оплата</string>
+    <string name="subtitle_card_number">Карта \*%s</string>
+    <string name="title_addresses">Мои адреса</string>
+    <string name="title_orders">Мои заказы</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_news">Новости</string>
+    <string name="title_cupons">Купоны</string>
+    <string name="title_about_us">О нас</string>
+    <string name="title_invite">Пригласить друзей</string>
+
+    <string name="title_connect_us">Связаться с нами</string>
+
+    <string name="search_hint">Поиск товаров</string>
+
+    <string name="current_pos">Текущее местоположение</string>
+
+    <string name="title_actions">Акции</string>
+    <string name="title_catalog">Каталог</string>
+
+    <string name="new_good">Новинка</string>
+
+    //messages
+    <string name="navigation_drawer_open">Открыто</string>
+    <string name="navigation_drawer_close">Закрыто</string>
+
+
+    //default user data
+    <string name="user_name">Анжела Джолинова</string>
+    <string name="phone">+7 912 001-11-11</string>
+
+    //promo section titles
+    <string name="summer_picnic">Летний пикник</string>
+    <string name="summer_launch">Летний обед</string>
+    <string name="on_breakfast">На завтрак</string>
+    <string name="on_dinner">На ужин</string>
+    <string name="for_children">Для детей</string>
+    <string name="for_company">На компанию</string>
+    <string name="for_hungriest">Если голоден</string>
+
+    //discounts title
+    <string name="dish_tom_yum">Том-Ям с креветками</string>
+    <string name="dish_pasta_carbonara">Паста Карбонара</string>
+    <string name="dish_beef_stroganoff">Бифстроганов с грибами</string>
+    <string name="dish_caesar_salad">Салат "Цезарь" с курицей</string>
+    <string name="dish_risotto_with_mushrooms">Ризотто с грибами и трюфельным маслом</string>
+    <string name="dish_philadelphia_roll">Ролл "Филадельфия" с лососем</string>
+    <string name="dish_bbq_chicken_wings">Куриные крылышки BBQ</string>
+
+    //catalog
+    <string name="catalog_borscht">Наборы</string>
+    <string name="catalog_spaghetti_bolognese">Пицаа</string>
+    <string name="catalog_chicken_kiev">Паста</string>
+    <string name="catalog_greek_salad">Ризотто</string>
+    <string name="catalog_vegetable_ratatouille">Салаты</string>
+    <string name="catalog_sushi_set">Полуфабрикаты</string>
+    <string name="catalog_beef_tenderloin">Десерты</string>
+    <string name="catalog_seafood_pizza">Добавки к блюдам</string>
+    <string name="catalog_pancakes_with_caviar">Напитки</string>
+
+    //errors
+    <string name="response_error_400">Некорректный запрос.</string>
+    <string name="response_error_401">В запросе отсутствует API-ключ</string>
+    <string name="response_error_403">В запросе указан несуществующий API-ключ</string>
+    <string name="response_error_405">Запрос сделан с методом, отличным от POST</string>
+    <string name="response_error_413">Слишком большая длина запроса или слишком много условий</string>
+    <string name="response_error_429">Слишком много запросов в секунду или новых соединений в минуту</string>
+    <string name="response_error_5xx">Произошла внутренняя ошибка сервиса</string>
+    <string name="response_error_unknown">Неизвестная ошибка</string>
+
+</resources>

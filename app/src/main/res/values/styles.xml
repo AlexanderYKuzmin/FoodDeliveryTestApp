@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="NavViewTextAppearance" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="RvStyle">
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="TvDiscountDescriptionStyle" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TvDiscountPriceStyle" parent="TvDiscountDescriptionStyle">
+        <item name="android:textColor">@color/color_text_gray</item>
+    </style>
+
+    <style name="TvDiscountInfoStyle" parent="TvDiscountDescriptionStyle">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+</resources>
