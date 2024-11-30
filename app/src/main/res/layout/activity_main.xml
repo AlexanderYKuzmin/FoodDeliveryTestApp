@@ -49,16 +49,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text=""
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/arrow_down"
-                    app:layout_constraintStart_toEndOf="@+id/tv_subtitle"
-                    app:layout_constraintTop_toTopOf="@+id/tv_subtitle"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_subtitle"
-                    />
+                    app:drawableEndCompat="@drawable/arrow_down" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
