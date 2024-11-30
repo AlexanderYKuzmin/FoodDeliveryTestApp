@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kuzmin.fooddeliverytestapp.databinding.ItemRvBannerBinding
 import com.kuzmin.fooddeliverytestapp.domain.model.food.BannerItem
-import com.kuzmin.fooddeliverytestapp.extension.showToast
 
 class BannerListAdapter(
 

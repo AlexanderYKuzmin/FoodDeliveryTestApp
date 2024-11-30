@@ -27,6 +27,14 @@ fun Context.dpToPx(dp: Int): Float {
     )
 }
 
+fun Context.dpToIntPx(dp: Int): Int {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dp.toFloat(),
+        this.resources.displayMetrics
+    ).toInt()
+}
+
 fun Context.showToast(text: Int) = Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 
 fun Context.showToast(text: String) = Toast.makeText(this, text, Toast.LENGTH_SHORT).show()

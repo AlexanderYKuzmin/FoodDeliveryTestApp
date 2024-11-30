@@ -7,14 +7,12 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatCallback
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import com.kuzmin.fooddeliverytestapp.R
 
 fun Activity.requestLocationPermission() {
     runOnUiThread {
-        val alert = AlertDialog.Builder(this, R.style.DialogTheme)
+        AlertDialog.Builder(this, R.style.DialogTheme)
             .setTitle(resources.getString(R.string.alert_dialog_permission_title))
             .setMessage(resources.getString(R.string.alert_dialog_permission_message))
             .setCancelable(false)
@@ -33,7 +31,7 @@ fun Activity.requestLocationPermission() {
 
 fun Activity.showAlert(message: String) {
     runOnUiThread {
-        val alert = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setMessage(message)
             .setCancelable(false)
             .setPositiveButton("Ok") { _, _ -> }

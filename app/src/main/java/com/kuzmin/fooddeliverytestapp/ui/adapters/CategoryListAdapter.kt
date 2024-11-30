@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kuzmin.fooddeliverytestapp.databinding.ItemRvCategoryBinding
 import com.kuzmin.fooddeliverytestapp.domain.model.food.CategoryItem
-import com.kuzmin.fooddeliverytestapp.extension.showToast
 
 class CategoryListAdapter
     : ListAdapter<CategoryItem, CategoryListAdapter.CategoryViewHolder>(CategoryDiffCallback) {

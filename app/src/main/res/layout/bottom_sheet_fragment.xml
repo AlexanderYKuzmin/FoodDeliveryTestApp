@@ -12,6 +12,7 @@
         android:id="@+id/sv_address_suggestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:queryHint="@string/search_street_hint"
         android:layout_margin="16dp"
         />
 

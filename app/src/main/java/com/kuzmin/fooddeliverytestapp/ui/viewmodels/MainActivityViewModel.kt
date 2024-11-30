@@ -24,7 +24,9 @@ class MainActivityViewModel @Inject constructor(
     val result: MutableLiveData<Result> get() = _result
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        throwable.printStackTrace()
+        _result.postValue(
+            Result.Error(throwable.message ?: "Unknown error")
+        )
     }
 
     fun loadAddress() {

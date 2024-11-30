@@ -16,7 +16,6 @@ import com.kuzmin.fooddeliverytestapp.ui.adapters.AddressListAdapter
 import com.kuzmin.fooddeliverytestapp.ui.viewmodels.BottomSheetViewModel
 import com.kuzmin.fooddeliverytestapp.util.ErrorHandler
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
 
 @AndroidEntryPoint
 class BottomSheetAddressSearchFragment  : BottomSheetDialogFragment() {
@@ -50,11 +49,16 @@ class BottomSheetAddressSearchFragment  : BottomSheetDialogFragment() {
                     binding.rvBottomSheet.adapter = addressAdapter
                     addressAdapter.submitList(it.addressList)
                 }
+                is AddressSuggestionResult.AddressByLocationSuccess -> {
+                    binding.svAddressSuggestion.setQuery(
+                        it.addressList[0].address, false
+                    )
+                }
                 is AddressSuggestionResult.Error -> {
                     requireActivity().showToast(
-                        ErrorHandler.handleError(it.message, requireContext().resources)
+                        ErrorHandler.handleError(it.throwable, requireContext().resources)
                     )
-                    Log.d("ERROR", "Error: ${it.message}")
+                    Log.d("ERROR", "Error: ${it.throwable.message}")
                 }
             }
         }
@@ -62,22 +66,25 @@ class BottomSheetAddressSearchFragment  : BottomSheetDialogFragment() {
 
 
     private fun setupSearchQuery() {
-        binding.svAddressSuggestion.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-                    bottomSheetViewModel.updateQuery(newText)
+        binding.svAddressSuggestion.apply {
+            isIconified = false
+            setOnQueryTextListener(object : OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
                 }
-                return true
-            }
-        })
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let {
+                        bottomSheetViewModel.updateQuery(newText)
+                    }
+                    return true
+                }
+            })
+        }
     }
 
     private fun setCurrentPositionListener() {
         binding.llCurrentPosition.setOnClickListener {
-            //TODO Может в search view добавить улицу исходя из координат надо испытать на реальном устройстве
+            bottomSheetViewModel.getAddressByLocation()
         }
     }
 

@@ -13,9 +13,11 @@
     <string name="failed_internet_connection">Проверьте интернет соединение</string>
     <string name="restricted_internet_connection">Доступ в сеть ограничен</string>
 
+    <string name="search_street_hint">Ул.</string>
+
     //titles
     <string name="title_payment">Оплата</string>
-    <string name="subtitle_card_number">Карта \*%s</string>
+    <string name="subtitle_card_number">Карта \*1234</string>
     <string name="title_addresses">Мои адреса</string>
     <string name="title_orders">Мои заказы</string>
     <string name="title_settings">Настройки</string>
@@ -39,6 +41,8 @@
     //messages
     <string name="navigation_drawer_open">Открыто</string>
     <string name="navigation_drawer_close">Закрыто</string>
+
+    <string name="undefined_location">Локация не определена</string>
 
 
     //default user data

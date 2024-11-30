@@ -38,10 +38,6 @@ class PrefManagerImpl @Inject constructor(
                     latitude = it[LATITUDE] ?: AppConstants.LATITUDE_NONE,
                     longitude = it[LONGITUDE] ?: AppConstants.LONGITUDE_NONE
                 )
-               /* Location(
-                    55.7522,
-                    37.6156
-                )*/
             }.first()
     }
 

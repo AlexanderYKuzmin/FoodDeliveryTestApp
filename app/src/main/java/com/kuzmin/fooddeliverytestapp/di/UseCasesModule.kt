@@ -19,11 +19,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 interface UseCasesModule {
 
-    /*@Binds
-    fun bindGetAllFoodDataFromDbUseCase(
-        getAllFoodDataFromDbUseCaseImpl: GetAllFoodDataFromDbUseCaseImpl
-    ): GetAllFoodDataFromDbUseCase*/
-
     @Binds
     fun bindGetAddressSuggestionsUseCase(
         addressSuggestionsUseCaseImpl: GetAddressSuggestionsUseCaseImpl

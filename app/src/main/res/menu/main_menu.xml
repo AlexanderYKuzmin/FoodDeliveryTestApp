@@ -1,31 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_payment"
-        android:title="@null"/>
-    <item
-        android:id="@+id/nav_addreses"
-        android:title="@string/title_addresses" />
-    <item
-        android:id="@+id/nav_orders"
-        android:title="@string/title_orders" />
-    <item
-        android:id="@+id/nav_favorites"
-        android:title="@string/title_favorites" />
-    <item
-        android:id="@+id/nav_news"
-        android:title="@string/title_news" />
-    <item
-        android:id="@+id/nav_cupons"
-        android:title="@string/title_cupons" />
-    <item
-        android:id="@+id/nav_about"
-        android:title="@string/title_about_us" />
-    <item
-        android:id="@+id/nav_invite"
-        android:title="@string/title_invite" />
-    <item
-        android:id="@+id/nav_settings"
-        android:title="@string/title_settings" />
-
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/gr_body">
+        <item
+            android:id="@+id/nav_payment"
+            android:title="@null"/>
+        <item
+            android:id="@+id/nav_addreses"
+            android:title="@string/title_addresses" />
+        <item
+            android:id="@+id/nav_orders"
+            android:title="@string/title_orders" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:title="@string/title_favorites" />
+        <item
+            android:id="@+id/nav_news"
+            android:title="@string/title_news" />
+        <item
+            android:id="@+id/nav_cupons"
+            android:title="@string/title_cupons" />
+        <item
+            android:id="@+id/nav_about"
+            android:title="@string/title_about_us" />
+        <item
+            android:id="@+id/nav_invite"
+            android:title="@string/title_invite" />
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/title_settings" />
+    </group>
+    <group android:id="@+id/gr_footer">
+        <item
+            android:id="@+id/nav_footer_spacer_1"
+            android:title="" />
+        <item
+            android:id="@+id/nav_footer_spacer_2"
+            android:title="" />
+        <item
+            android:id="@+id/nav_contact_us"
+            android:title="@null" />
+    </group>
 </menu>

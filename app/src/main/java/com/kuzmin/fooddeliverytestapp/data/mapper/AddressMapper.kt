@@ -42,7 +42,7 @@ class AddressMapper @Inject constructor() {
         }
     }
 
-    private fun mapLocationToLocationDto(location: Location): LocationDto {
+    fun mapLocationToLocationDto(location: Location): LocationDto {
         return LocationDto(
             latitude = location.latitude,
             longitude = location.longitude,

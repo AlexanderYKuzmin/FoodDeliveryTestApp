@@ -1,17 +1,17 @@
 package com.kuzmin.fooddeliverytestapp.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kuzmin.fooddeliverytestapp.domain.model.AddressSuggestionResult
 import com.kuzmin.fooddeliverytestapp.domain.model.address.Address
+import com.kuzmin.fooddeliverytestapp.domain.model.address.Location
 import com.kuzmin.fooddeliverytestapp.domain.model.address.QueryData
 import com.kuzmin.fooddeliverytestapp.domain.usecases.GetAddressSuggestionsUseCase
 import com.kuzmin.fooddeliverytestapp.domain.usecases.GetLocationDataFromDatastoreUseCase
-import com.kuzmin.fooddeliverytestapp.domain.usecases.StoreLocationDataToDatastoreUseCase
 import com.kuzmin.fooddeliverytestapp.domain.usecases.WriteAddressToDatastoreUseCase
 import com.kuzmin.fooddeliverytestapp.util.AppConstants
+import com.kuzmin.fooddeliverytestapp.util.exceptions.UndefinedLocationException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -26,9 +26,10 @@ import javax.inject.Inject
 class BottomSheetViewModel @Inject constructor(
     private val getAddressSuggestionsUseCase: GetAddressSuggestionsUseCase,
     private val getLocationDataFromDatastoreUseCase: GetLocationDataFromDatastoreUseCase,
-    private val storeLocationDataToDatastoreUseCase: StoreLocationDataToDatastoreUseCase,
     private val writeAddressToDatastoreUseCase: WriteAddressToDatastoreUseCase
 ) : ViewModel() {
+
+    private var location: Location? = null
 
     private val _addressResult = MutableLiveData<AddressSuggestionResult>()
     val addressResult: MutableLiveData<AddressSuggestionResult> get() = _addressResult
@@ -36,7 +37,7 @@ class BottomSheetViewModel @Inject constructor(
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         _addressResult.postValue(
             AddressSuggestionResult.Error(
-                throwable.message ?: "Unknown error"
+                throwable
             )
         )
     }
@@ -45,6 +46,11 @@ class BottomSheetViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+
+            launch(Dispatchers.IO + coroutineExceptionHandler) {
+                location = getLocationDataFromDatastoreUseCase.getLocationDataFromDatastore()
+            }
+
             _searchAddressStateFlow
                 .debounce(300)
                 .filter {
@@ -58,9 +64,7 @@ class BottomSheetViewModel @Inject constructor(
 
     private suspend fun getAddressSuggestions(query: String) {
         viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            val location = getLocationDataFromDatastoreUseCase.getLocationDataFromDatastore()
-
-            val queryData = if (location.isNone()) {
+            val queryData = if (location == null || location!!.isNone()) {
                 QueryData(
                     query = String.format("${AppConstants.DEFAULT_CITY} %s", query)
                 )
@@ -80,6 +84,17 @@ class BottomSheetViewModel @Inject constructor(
 
     fun updateQuery(query: String) {
         _searchAddressStateFlow.value = query
+    }
+
+    fun getAddressByLocation() {
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+            if (location == null || location!!.isNone()) throw UndefinedLocationException()
+            _addressResult.postValue(
+                AddressSuggestionResult.AddressByLocationSuccess(
+                    getAddressSuggestionsUseCase.getAddressByLocation(location!!)
+                )
+            )
+        }
     }
 
     fun writeAddressToDatastore(address: Address) {

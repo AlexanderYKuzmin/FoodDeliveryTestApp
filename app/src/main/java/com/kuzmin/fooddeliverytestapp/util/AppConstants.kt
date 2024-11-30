@@ -5,5 +5,7 @@ object AppConstants {
     const val LONGITUDE_NONE = -200.0
     const val RADIUS_DEFAULT = 10000
 
+    const val RADIUS_MIN = 50
+
     const val DEFAULT_CITY = "Ижевск"
 }

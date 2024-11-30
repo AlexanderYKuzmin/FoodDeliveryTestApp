@@ -8,7 +8,6 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,6 +25,7 @@ import com.kuzmin.fooddeliverytestapp.domain.model.Result.UpdateAddressSuccess
 import com.kuzmin.fooddeliverytestapp.domain.model.address.Location
 import com.kuzmin.fooddeliverytestapp.domain.model.food.CatalogItem
 import com.kuzmin.fooddeliverytestapp.extension.checkNetworkConnection
+import com.kuzmin.fooddeliverytestapp.extension.dpToIntPx
 import com.kuzmin.fooddeliverytestapp.extension.dpToPx
 import com.kuzmin.fooddeliverytestapp.extension.hasRequiredRuntimePermissions
 import com.kuzmin.fooddeliverytestapp.extension.requestLocationPermission
@@ -36,7 +36,6 @@ import com.kuzmin.fooddeliverytestapp.ui.adapters.DiscountListAdapter
 import com.kuzmin.fooddeliverytestapp.ui.fragments.BottomSheetAddressSearchFragment
 import com.kuzmin.fooddeliverytestapp.ui.viewmodels.MainActivityViewModel
 import com.kuzmin.fooddeliverytestapp.util.FoodDefaultData
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         setupToolbar()
 
-        setupDrawer()
+        setupDrawerLogo()
 
         setupRvAdapters()
 
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         val navigationView: NavigationView = binding.nvNav
         setNavigationItemClockListener(navigationView)
 
-        setupCustomMenuItem()
+        customizeMenuItems()
 
         viewModel.loadAddress()
 
@@ -137,10 +136,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showBottomSheetDialogFragment() {
-        BottomSheetAddressSearchFragment().show(supportFragmentManager, BottomSheetAddressSearchFragment.TAG);
+        BottomSheetAddressSearchFragment().show(supportFragmentManager, BottomSheetAddressSearchFragment.TAG)
     }
 
-    private fun setupDrawer() {
+    private fun setupDrawerLogo() {
         val logo = BitmapFactory.decodeResource(resources, R.drawable.user_face)
         val logoRounded = RoundedBitmapDrawableFactory.create(resources, logo).apply {
             cornerRadius = dpToPx(49)
@@ -151,22 +150,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupCustomMenuItem() {
+    private fun customizeMenuItems() {
         val menu = binding.nvNav.menu
 
-        val menuItem = menu.findItem(R.id.nav_payment)
-        menuItem.setActionView(R.layout.custom_menu_item)
+        val menuItemPayment = menu.findItem(R.id.nav_payment)
+        menuItemPayment.setActionView(R.layout.custom_menu_item)
 
-        val menuItemView = menuItem.actionView
-        menuItemView?.findViewById<TextView>(R.id.menu_item_title)?.apply {
-            text = getString(R.string.title_payment)
-        }
-
-        menuItemView?.findViewById<TextView>(R.id.menu_item_subtitle)?.apply {
-            text = String.format(getString(R.string.subtitle_card_number), "1234")
-        }
-
-        menuItemView?.invalidate()
+        val menuItemContactUs = menu.findItem(R.id.nav_contact_us)
+        menuItemContactUs.setActionView(R.layout.footer_nav_view)
     }
 
     private fun setNavigationItemClockListener(navigationView: NavigationView) {
@@ -223,7 +214,11 @@ class MainActivity : AppCompatActivity() {
     private fun addCatalogItem(gridLayout: GridLayout, catalogItem: CatalogItem) {
         layoutInflater.inflate(R.layout.item_catalog, gridLayout, false).apply {
             rootView.background = ShapeDrawable().apply {
-                shape = RoundRectShape(floatArrayOf(16f, 16f, 16f, 16f, 16f, 16f, 16f, 16f), null, null)
+                shape = RoundRectShape(
+                    floatArrayOf(16f, 16f, 16f, 16f, 16f, 16f, 16f, 16f),
+                    null,
+                    null
+                )
                 paint.color = getColor(catalogItem.colorId)
             }
 
@@ -231,14 +226,16 @@ class MainActivity : AppCompatActivity() {
                 GridLayout.spec(GridLayout.UNDEFINED, 1f),
                 GridLayout.spec(GridLayout.UNDEFINED, 1f)
             ).also {
-                it.width = dpToPx(108).toInt()
+                it.width = dpToIntPx(108)
             }
+
             findViewById<TextView>(R.id.tv_catalog_title).text = catalogItem.title
             findViewById<ImageView>(R.id.iv_catalog).setImageResource(catalogItem.pictureId)
 
             rootView.setOnClickListener {
                 Log.d("TAG", "Catalog item clicked: ${catalogItem.title}")
             }
+
             gridLayout.addView(this)
         }
     }
